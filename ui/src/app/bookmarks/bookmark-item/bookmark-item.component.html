@@ -5,12 +5,24 @@
   hideToggle
 >
   <mat-expansion-panel-header>
-    <mat-panel-title> Personal data </mat-panel-title>
+    <mat-panel-title>{{ bookmark?.name }}</mat-panel-title>
     <!-- Animation through angular animation => see .ts file -->
     <mat-icon [@openClose]="step ? 'open' : 'closed'">bookmark</mat-icon>
   </mat-expansion-panel-header>
 
-  <mat-panel-description> Dat </mat-panel-description>
+  <div class="url-container">
+    <mat-icon>stop_circle</mat-icon>
+    <mat-panel-description> {{ bookmark?.url }} </mat-panel-description>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="group-container">
+    <mat-icon>group_work</mat-icon>
+    <mat-panel-description>
+      {{ bookmark?.group }}
+    </mat-panel-description>
+  </div>
   <!-- <mat-form-field>
         <mat-label>First name</mat-label>
         <input matInput>
@@ -22,7 +34,11 @@
       </mat-form-field> -->
   <mat-action-row>
     <div *ngFor="let button of buttons">
-      <button mat-mini-fab color="{{ button.color }}">
+      <button
+        mat-mini-fab
+        color="{{ button.color }}"
+        (click)="button.title === 'Edit' ? onEdit() : onDelete()"
+      >
         <mat-icon>{{ button.icon }}</mat-icon>
       </button>
     </div>

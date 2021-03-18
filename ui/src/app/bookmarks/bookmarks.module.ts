@@ -9,16 +9,17 @@ import { BookmarkItemComponent } from './bookmark-item/bookmark-item.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { BookmarkEditComponent } from './bookmark-edit/bookmark-edit.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
-  declarations: [BookmarksListComponent, BookmarkItemComponent, BookmarkEditComponent],
+  declarations: [BookmarksListComponent, BookmarkItemComponent],
   imports: [
     CommonModule,
     BookmarksRoutingModule,
     MatExpansionModule,
     MatIconModule,
     MatButtonModule,
+    MatDividerModule,
     StoreModule.forFeature('bookmarks', fromBookmarks.reducer),
   ],
   exports: [BookmarksListComponent],

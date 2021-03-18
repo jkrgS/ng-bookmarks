@@ -1,31 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { CreateBookmark } from 'src/app/_state/bookmark.actions';
+import { IAppState } from 'src/app/_state/main.reducer';
 import { Bookmark } from '../models/bookmark.model';
+import { nanoid } from 'nanoid';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-bookmarks-list',
   templateUrl: './bookmarks-list.component.html',
   styleUrls: ['./bookmarks-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookmarksListComponent implements OnInit {
   header = 'Bookmarks List';
-  _bookmark!: Bookmark;
+  bookmark!: Bookmark;
+  bookmarks$!: Observable<Bookmark[]>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private store: Store<IAppState>) {}
+
+  ngOnInit(): void {
+    this.bookmarks$ = this.store.select((s) => s.bookmarks.bookmarks);
+  }
 
   openDialog(): void {
-    console.log('dialog');
     const dialogRef = this.dialog.open(ModalComponent, {
-      width: '250px',
-      data: { ...this._bookmark },
+      width: '333px',
     });
 
     // the warning below is a known error from typescript => https://github.com/microsoft/TypeScript/issues/43053
     dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
+      if (!result) {
+        return;
+      }
+
+      this.store.dispatch(
+        CreateBookmark({ bookmark: { id: nanoid(), ...result } })
+      );
     });
   }
-
-  ngOnInit(): void {}
 }

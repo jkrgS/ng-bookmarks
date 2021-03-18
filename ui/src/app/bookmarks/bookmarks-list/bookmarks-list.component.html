@@ -4,4 +4,9 @@
     <mat-icon>bookmark_add</mat-icon>
   </button>
 </div>
-<app-bookmark-item></app-bookmark-item>
+<div class="card-container">
+  <app-bookmark-item
+    *ngFor="let bookmark of bookmarks$ | async"
+    [bookmark]="bookmark"
+  ></app-bookmark-item>
+</div>

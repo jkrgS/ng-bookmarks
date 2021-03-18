@@ -1,0 +1,16 @@
+@mixin container($margin) {
+  display: flex;
+  margin-bottom: $margin;
+  margin-top: $margin;
+  mat-icon {
+    margin-right: $margin;
+  }
+}
+
+.url-container {
+  @include container(0.5rem);
+}
+
+.group-container {
+  @include container(0.5rem);
+}
