@@ -15,9 +15,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ModalComponent } from './modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 
 @NgModule({
-  declarations: [NavbarComponent, ModalComponent],
+  declarations: [NavbarComponent, ModalComponent, ConfirmationModalComponent],
   imports: [
     CommonModule,
     FormsModule,

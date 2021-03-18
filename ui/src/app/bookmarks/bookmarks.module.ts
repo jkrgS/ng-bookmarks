@@ -10,6 +10,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [BookmarksListComponent, BookmarkItemComponent],
@@ -20,6 +22,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatIconModule,
     MatButtonModule,
     MatDividerModule,
+    MatTooltipModule,
+    MatChipsModule,
     StoreModule.forFeature('bookmarks', fromBookmarks.reducer),
   ],
   exports: [BookmarksListComponent],
