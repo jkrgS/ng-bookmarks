@@ -1,5 +1,7 @@
 <form novalidate [formGroup]="form">
-  <h1 mat-dialog-title>New Bookmark</h1>
+  <h1 mat-dialog-title>
+    {{ !data ? "New bookmark" : "Edit bookmark" }}
+  </h1>
   <div mat-dialog-content>
     <mat-form-field>
       <mat-label>Name</mat-label>

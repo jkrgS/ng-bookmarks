@@ -7,6 +7,11 @@ import { IAppState } from 'src/app/_state/main.reducer';
 import { Bookmark } from '../models/bookmark.model';
 import { nanoid } from 'nanoid';
 import { Observable } from 'rxjs';
+import {
+  selectBookmarksLeisure,
+  selectBookmarksPersonal,
+  selectBookmarksWork,
+} from 'src/app/_state/bookmark.selectors';
 
 @Component({
   selector: 'app-bookmarks-list',
@@ -24,15 +29,9 @@ export class BookmarksListComponent implements OnInit {
   constructor(public dialog: MatDialog, private store: Store<IAppState>) {}
 
   ngOnInit(): void {
-    this.bookmarksWork$ = this.store.select((s) =>
-      s.bookmarks.bookmarks.filter((val) => val.group === 'work')
-    );
-    this.bookmarksLeisure$ = this.store.select((s) =>
-      s.bookmarks.bookmarks.filter((val) => val.group === 'leisure')
-    );
-    this.bookmarksPersonal$ = this.store.select((s) =>
-      s.bookmarks.bookmarks.filter((val) => val.group === 'personal')
-    );
+    this.bookmarksWork$ = this.store.select(selectBookmarksWork);
+    this.bookmarksLeisure$ = this.store.select(selectBookmarksLeisure);
+    this.bookmarksPersonal$ = this.store.select(selectBookmarksPersonal);
   }
 
   openDialog(): void {
