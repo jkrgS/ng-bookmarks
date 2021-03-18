@@ -16,10 +16,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/_state/main.reducer';
-import { EditBookmark } from 'src/app/_state/bookmark.actions';
+import { DeleteBookmark, EditBookmark } from 'src/app/_state/bookmark.actions';
 
 @Component({
   selector: 'app-bookmark-item',
+  // animated bookmark icon at the top right of the card
   animations: [
     trigger('openClose', [
       // ...
@@ -46,7 +47,8 @@ import { EditBookmark } from 'src/app/_state/bookmark.actions';
 export class BookmarkItemComponent implements OnInit {
   @Input() bookmark!: Bookmark;
 
-  step = 0;
+  step = 0; // expansion panel status
+  // array for available buttons per bookmark
   buttons = [
     { title: 'Delete', color: '', icon: 'restore_from_trash' },
     { title: 'Edit', color: '', icon: 'mode_edit' },
@@ -74,6 +76,7 @@ export class BookmarkItemComponent implements OnInit {
         return;
       }
 
+      // if user save changes through modal, dispatch
       this.store.dispatch(
         EditBookmark({
           id: this.bookmark.id,
@@ -82,8 +85,8 @@ export class BookmarkItemComponent implements OnInit {
       );
     });
   }
-
-  onDelete(): void {
-    console.log('delete');
+  // delete existing bookmark
+  onDelete(id: any): void {
+    this.store.dispatch(DeleteBookmark({ id }));
   }
 }
