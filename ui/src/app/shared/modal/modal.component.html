@@ -32,7 +32,7 @@
       disabled="{{ form.status === 'INVALID' }}"
       cdkFocusInitial
     >
-      Create
+      {{ !data ? "Create" : "Edit" }}
     </button>
   </div>
 </form>
