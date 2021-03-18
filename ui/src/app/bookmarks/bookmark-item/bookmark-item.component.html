@@ -23,26 +23,16 @@
       {{ bookmark?.group }}
     </mat-panel-description>
   </div>
-  <!-- <mat-form-field>
-        <mat-label>First name</mat-label>
-        <input matInput>
-      </mat-form-field>
-  
-      <mat-form-field>
-        <mat-label>Age</mat-label>
-        <input matInput type="number" min="1">
-      </mat-form-field> -->
+
   <mat-action-row>
     <div *ngFor="let button of buttons">
       <button
         mat-mini-fab
         color="{{ button.color }}"
-        (click)="button.title === 'Edit' ? onEdit() : onDelete()"
+        (click)="button.title === 'Edit' ? onEdit() : onDelete(bookmark?.id)"
       >
         <mat-icon>{{ button.icon }}</mat-icon>
       </button>
     </div>
-    <!-- <button mat-button color="primary">Delete</button>
-    <button mat-button color="primary">Next</button> -->
   </mat-action-row>
 </mat-expansion-panel>
