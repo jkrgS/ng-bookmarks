@@ -17,6 +17,7 @@ import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/_state/main.reducer';
 import { DeleteBookmark, EditBookmark } from 'src/app/_state/bookmark.actions';
+import { ConfirmationModalComponent } from 'src/app/shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-bookmark-item',
@@ -85,8 +86,23 @@ export class BookmarkItemComponent implements OnInit {
       );
     });
   }
-  // delete existing bookmark
-  onDelete(id: any): void {
-    this.store.dispatch(DeleteBookmark({ id }));
+  onDelete(): void {
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      maxWidth: '333px',
+      data: {
+        title: 'Confirm delete',
+        message: `Are you sure you want to delete the ${this.bookmark.name} bookmark?`,
+      },
+    });
+
+    // the warning below is a known error from typescript => https://github.com/microsoft/TypeScript/issues/43053
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) {
+        return;
+      }
+
+      // delete existing bookmark
+      this.store.dispatch(DeleteBookmark({ id: this.bookmark.id }));
+    });
   }
 }

@@ -13,7 +13,7 @@
 }
 
 mat-expansion-panel {
-  width: 90%;
+  margin: 3rem !important;
 }
 
 mat-expansion-panel-header {
@@ -26,8 +26,12 @@ mat-form-field {
 }
 
 mat-panel-title {
-  font-size: 1.5rem;
+  display: block !important;
+  font-size: 1.3rem;
   font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .mat-dialog-actions {
@@ -39,11 +43,33 @@ mat-panel-title {
   transform: rotate(0deg);
 }
 
-.card-container {
+.app-bookmarks {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: auto;
-  row-gap: 2rem;
-  justify-content: space-between;
-  margin-top: 4rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "work"
+    "leisure"
+    "personal";
+}
+
+@media only screen and (min-width: 600px) {
+  .app-bookmarks {
+    grid-template-columns: 33% 33% 33%;
+    row-gap: 2rem;
+    justify-content: space-between;
+    grid-template-areas: "work leisure personal";
+  }
+}
+
+.work {
+  margin-top: 3rem;
+  grid-area: work;
+}
+.leisure {
+  margin-top: 3rem;
+  grid-area: leisure;
+}
+.personal {
+  margin-top: 3rem;
+  grid-area: personal;
 }

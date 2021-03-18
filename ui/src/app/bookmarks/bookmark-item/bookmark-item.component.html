@@ -5,7 +5,9 @@
   hideToggle
 >
   <mat-expansion-panel-header>
-    <mat-panel-title>{{ bookmark?.name }}</mat-panel-title>
+    <mat-panel-title matTooltip="{{ bookmark?.name }}">{{
+      bookmark?.name
+    }}</mat-panel-title>
     <!-- Animation through angular animation => see .ts file -->
     <mat-icon [@openClose]="step ? 'open' : 'closed'">bookmark</mat-icon>
   </mat-expansion-panel-header>
@@ -29,7 +31,7 @@
       <button
         mat-mini-fab
         color="{{ button.color }}"
-        (click)="button.title === 'Edit' ? onEdit() : onDelete(bookmark?.id)"
+        (click)="button.title === 'Edit' ? onEdit() : onDelete()"
       >
         <mat-icon>{{ button.icon }}</mat-icon>
       </button>

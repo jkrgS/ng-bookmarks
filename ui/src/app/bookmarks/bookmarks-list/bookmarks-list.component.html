@@ -5,9 +5,41 @@
   </button>
 </div>
 <mat-divider></mat-divider>
-<div class="card-container">
-  <app-bookmark-item
-    *ngFor="let bookmark of bookmarks$ | async"
-    [bookmark]="bookmark"
-  ></app-bookmark-item>
+<div class="app-bookmarks">
+  <!-- grouped by "work" -->
+  <div class="work">
+    <div class="chips">
+      <mat-chip-list>
+        <mat-chip>Work</mat-chip>
+      </mat-chip-list>
+    </div>
+    <app-bookmark-item
+      *ngFor="let bookmark of bookmarksWork$ | async"
+      [bookmark]="bookmark"
+    ></app-bookmark-item>
+  </div>
+  <!-- grouped by "leisure" -->
+  <div class="leisure">
+    <div class="chips">
+      <mat-chip-list>
+        <mat-chip>Leisure</mat-chip>
+      </mat-chip-list>
+    </div>
+    <app-bookmark-item
+      *ngFor="let bookmark of bookmarksLeisure$ | async"
+      [bookmark]="bookmark"
+    ></app-bookmark-item>
+  </div>
+  <!-- grouped by "personal" -->
+  <div class="personal">
+    <div class="chips">
+      <mat-chip-list>
+        <mat-chip>Personal</mat-chip>
+      </mat-chip-list>
+    </div>
+    <app-bookmark-item
+      *ngFor="let bookmark of bookmarksPersonal$ | async"
+      [bookmark]="bookmark"
+    ></app-bookmark-item>
+  </div>
 </div>

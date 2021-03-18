@@ -17,12 +17,22 @@ import { Observable } from 'rxjs';
 export class BookmarksListComponent implements OnInit {
   header = 'Bookmarks List';
   bookmark!: Bookmark;
-  bookmarks$!: Observable<Bookmark[]>;
+  bookmarksWork$!: Observable<Bookmark[]>;
+  bookmarksLeisure$!: Observable<Bookmark[]>;
+  bookmarksPersonal$!: Observable<Bookmark[]>;
 
   constructor(public dialog: MatDialog, private store: Store<IAppState>) {}
 
   ngOnInit(): void {
-    this.bookmarks$ = this.store.select((s) => s.bookmarks.bookmarks);
+    this.bookmarksWork$ = this.store.select((s) =>
+      s.bookmarks.bookmarks.filter((val) => val.group === 'work')
+    );
+    this.bookmarksLeisure$ = this.store.select((s) =>
+      s.bookmarks.bookmarks.filter((val) => val.group === 'leisure')
+    );
+    this.bookmarksPersonal$ = this.store.select((s) =>
+      s.bookmarks.bookmarks.filter((val) => val.group === 'personal')
+    );
   }
 
   openDialog(): void {
