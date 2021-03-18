@@ -1,0 +1,47 @@
+.page-layout {
+  padding: 2rem 1rem;
+}
+.page-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    height: fit-content;
+  }
+}
+
+mat-expansion-panel {
+  width: 90%;
+}
+
+mat-expansion-panel-header {
+  height: 3rem !important;
+  padding: 1rem !important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-panel-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
+
+.mat-expansion-panel-header > .mat-icon {
+  transition: 1s;
+  transform: rotate(0deg);
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: auto;
+  row-gap: 2rem;
+  justify-content: space-between;
+}

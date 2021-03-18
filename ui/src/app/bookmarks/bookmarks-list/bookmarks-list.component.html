@@ -1,0 +1,12 @@
+<div class="page-header">
+  <span class="mat-display-1">{{ header }}</span>
+  <button mat-icon-button color="primary" (click)="openDialog()">
+    <mat-icon>bookmark_add</mat-icon>
+  </button>
+</div>
+<div class="card-container">
+  <app-bookmark-item
+    *ngFor="let bookmark of bookmarks$ | async"
+    [bookmark]="bookmark"
+  ></app-bookmark-item>
+</div>

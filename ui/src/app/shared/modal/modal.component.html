@@ -1,0 +1,36 @@
+<form novalidate [formGroup]="form">
+  <h1 mat-dialog-title>New Bookmark</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Url</mat-label>
+      <input matInput formControlName="url" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Group</mat-label>
+      <mat-select disableRipple formControlName="group">
+        <mat-option
+          *ngFor="let group of groups"
+          value="{{ group.name }}"
+          [value]="group.name"
+          >{{ group.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button color="warn" (click)="dialogRef.close()">Cancel</button>
+    <button
+      mat-button
+      color="primary"
+      (click)="createBookmark()"
+      disabled="{{ form.status === 'INVALID' }}"
+      cdkFocusInitial
+    >
+      Create
+    </button>
+  </div>
+</form>
